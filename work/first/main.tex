@@ -3,11 +3,52 @@
 \input{../include/lib}
 \input{../include/commands}
 
+% Команды для настройки содержания
+\renewcommand\contentsname{\center{Содержание}} % Вместо оглавления пишется содержание
+\addto{\captionsenglish}{\renewcommand{\bibname}{References}}
 \begin{document}
+
 \input{../include/title.tex}
-\newpage
 
 \tableofcontents
 \newpage
+
+\mysec{Описание данных}
+Среднее время пит стопа в гонках Formula-1 c 1971 по 2020г.\footnote{http://ergast.com/mrd/db/}
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        Год & Время & Год & Время \\ \hline
+        1971 & 26.898 & 1996 & 22.520 \\ \hline
+        1972 & 25.021 & 1997 & 24.733 \\ \hline
+        1973 & 23.426 & 1998 & 16.892 \\ \hline
+        1974 & 23.251 & 1999 & 23.100 \\ \hline
+        1975 & 23.842 & 2000 & 25.098 \\ \hline
+        1976 & 23.643 & 2001 & 24.500 \\ \hline
+        1977 & 22.603 & 2002 & 24.192 \\ \hline
+        1978 & 24.863 & 2003 & 24.036 \\ \hline
+        1979 & 25.259 & 2004 & 23.199 \\ \hline
+        1980 & 25.342 & 2005 & 26.348 \\ \hline
+        1981 & 22.994 & 2006 & 25.683 \\ \hline
+        1982 & 23.227 & 2007 & 24.332 \\ \hline
+        1983 & 24.535 & 2008 & 22.681 \\ \hline
+        1984 & 23.716 & 2009 & 23.871 \\ \hline
+        1985 & 24.064 & 2010 & 24.848 \\ \hline
+        1986 & 25.978 & 2011 & 26.446 \\ \hline
+        1987 & 24.899 & 2012 & 26.230 \\ \hline
+        1988 & 16.867 & 2013 & 26.309 \\ \hline
+        1989 & 24.463 & 2014 & 24.181 \\ \hline
+        1990 & 24.865 & 2015 & 24.095 \\ \hline
+        1991 & 23.988 & 2016 & 31.694 \\ \hline
+        1992 & 23.792 & 2017 & 32.978 \\ \hline
+        1993 & 23.303 & 2018 & 22.572 \\ \hline
+        1994 & 23.438 & 2019 & 22.773 \\ \hline
+        1995 & 37.856 & 2020 & 22.552 \\ \hline
+    \end{tabular}
+\end{table}
+\newpage
+
+\mysec{Простейшие способы обработки статистических данных}
 
 \end{document}
