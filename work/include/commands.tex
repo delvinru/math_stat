@@ -1,4 +1,9 @@
 \newcommand{\mysec}[1]{
-{\center\section*{#1}}
+{\center\section*{\hyperlink{toc}{#1}}}
 \addcontentsline{toc}{section}{#1}
+}
+
+\newcommand{\mysubsec}[1]{
+{\center\subsection*{#1}}
+\addcontentsline{toc}{subsection}{#1}
 }
