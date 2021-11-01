@@ -1,7 +1,8 @@
-CC=pdflatex
+CC=xelatex
 FILE=main.tex
 BUILD=../../build
 
 all:
-	$(CC) -output-directory $(BUILD) $(FILE)
-	$(CC) -output-directory $(BUILD) $(FILE)
+	$(CC) $(FILE)
+	$(CC) $(FILE)
+	mv main.{toc,log,aux,pdf,out} $(BUILD)
