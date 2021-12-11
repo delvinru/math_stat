@@ -1,5 +1,5 @@
 CC=xelatex
-FILE=first
+FILE=second
 BUILD=../../build
 
 all:
