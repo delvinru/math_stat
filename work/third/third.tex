@@ -713,4 +713,81 @@ $\tfrac{1}{2} \ln\left(\tfrac{\r + 1}{1-\r}\right), \tfrac{1}{\sqrt{n - 3}}$ т.
     }{\Db(y)} = 146,68
 \end{align*}
 
+\newpage
+\mysubsec{Обратная регрессия}
+
+Уравнение обратной в общем виде выглядит как $\overline{\yx} = \tfrac{1}{kx + b}$.
+
+Рассмотрим наблюдения вида $(x_1, y_1^{-1}); \ldots; (x_n; y_n^{-1})$ и используем формулу:
+\begin{align*}
+    \frac{\overline{\yx} - \overline{\yb}}{\sb(y)} = \r(x,y)\frac{x - \overline{\xb}}{\sb(x)}
+\end{align*}
+
+Сгруппируем возле $\overline{\yx}$ и $x$ коэффициенты. Получим соответствующие $\hat{k}$ и $\hat{B}$:
+\begin{align*}
+    \overline{\zx} = \frac{
+        \r(x, y^{-1})\sb(y^{-1})
+    }{\sb(x)}x
+    -
+    \frac{\sb(y^{-1})}{\sb(x)}
+    +
+    \overline{\yb^{-1}}
+\end{align*}
+
+Пересчитаем коэффициенты корреляции, среднее квадратичное отклонение и среднее выборочное значение $y_i$:
+\begin{gather*}
+    \overline{\yb^{-1}} = \frac{\sum\limits_{i=1}^n n_i y_i^{-1}}{30} = 0,0143 \\
+    \sb(y^{-1}) = 0,005 \\ 
+    \r(x, y^{-1}) = \frac{
+        \cov(x, y^{-1})
+    }{
+        \sb(x)\sb(y^{-1})
+    }
+    =
+    \frac{
+        \sum\limits_{i=1}^n(x_i - \overline{\xb})(y_i^{-1} - \overline{\yb^{-1}})
+    }{
+        n \sb(x)\sb(y^{-1})
+    }
+    = -0,432
+\end{gather*}
+
+Получим следующее уравнение:
+\begin{align*}
+    \overline{\yx^{-1}} = \frac{-0,432 \cdot 0,005}{8,15}x - \frac{-0,432 \cdot 0,005 \cdot 84,43}{8,15} + 0,0143 = -0,0003x + 0,0386
+\end{align*}
+
+Произведем обратную замену и получим уравнений обратной регрессии:
+\begin{align*}
+    \overline{\yx} = \frac{1}{-0,0003x  + 0,0386}
+\end{align*}
+
+\newpage
+Найдем ошибки уравнения регрессии по формуле $\varepsilon_i = y_i - \tfrac{1}{kx_i + b}$ и построим таблицу значений:
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        $\varepsilon_i$ & Значение & $\varepsilon_i$ & Значение &$\varepsilon_i$ & Значение \\ \hline
+        $\varepsilon_{1}$  & 3,30  & $\varepsilon_{11}$ & -8,88  & $\varepsilon_{21}$ & -3,39 \\ \hline
+        $\varepsilon_{2}$  & 15,50 & $\varepsilon_{12}$ & 7,54   & $\varepsilon_{22}$ & -0,82 \\ \hline
+        $\varepsilon_{3}$  & 11,64 & $\varepsilon_{13}$ & 5,21   & $\varepsilon_{23}$ & 6,29 \\ \hline
+        $\varepsilon_{4}$  & 11,98 & $\varepsilon_{14}$ & 2,06   & $\varepsilon_{24}$ & -6,05 \\ \hline
+        $\varepsilon_{5}$  & 4,98  & $\varepsilon_{15}$ & -9,31  & $\varepsilon_{25}$ & -6,04 \\ \hline
+        $\varepsilon_{6}$  & 9,50  & $\varepsilon_{16}$ & -36,02 & $\varepsilon_{26}$ & -7,86 \\ \hline
+        $\varepsilon_{7}$  & 2,10  & $\varepsilon_{17}$ & -2,86  & $\varepsilon_{27}$ & 20,06 \\ \hline
+        $\varepsilon_{8}$  & 6,64  & $\varepsilon_{18}$ & -5,86  & $\varepsilon_{28}$ & 12,53 \\ \hline
+        $\varepsilon_{9}$  & -3,88 & $\varepsilon_{19}$ & 15,98  & $\varepsilon_{29}$ & 19,16 \\ \hline
+        $\varepsilon_{10}$ & 3,12  & $\varepsilon_{20}$ & -18,13 & $\varepsilon_{30}$ & 22,98 \\ \hline
+    \end{tabular}
+\end{table}
+\begin{align*}
+    R^2 = 1 - \frac{
+        \tfrac{1}{n} \sum\limits_{i=1}^{n}\varepsilon_i^2
+    }{\Db(y)} = 166,35
+\end{align*}
+
+\newpage
+\mysec{Таблица сравнений}
+
 \end{document}
