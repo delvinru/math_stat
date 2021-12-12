@@ -461,6 +461,81 @@ $\tfrac{1}{2} \ln\left(\tfrac{\r + 1}{1-\r}\right), \tfrac{1}{\sqrt{n - 3}}$ т.
 
 Получим, что $F_{\text{набл}} > F_{\text{табл}} \Rightarrow H_0$ отклоняется. 
 
+\newpage
+
 \mysubsec{Кубическая регрессия}
+Формула кубической регрессии имеет следующий вид: $\overline{\yx} = a_3x^3 + a_2x^2 + a_1x + a_0$.
+
+\begin{gather*}
+    \begin{cases}
+        a_3\sum\limits_{i=1}^n x_i^6 + a_2 \sum\limits_{i=1}^n x_i^5 + a_1 \sum\limits_{i=1}^n x_i^4 + a_0 \sum\limits_{i=1}^n x_i^3 = \sum\limits_{i=1}^n y_ix_i^3, \\
+        a_3\sum\limits_{i=1}^n x_i^5 + a_2 \sum\limits_{i=1}^n x_i^4 + a_1 \sum\limits_{i=1}^n x_i^3 + a_0 \sum\limits_{i=1}^n x_i^2 = \sum\limits_{i=1}^n y_ix_i^2, \\
+        a_3\sum\limits_{i=1}^n x_i^4 + a_2 \sum\limits_{i=1}^n x_i^3 + a_1 \sum\limits_{i=1}^n x_i^2 + a_0 \sum\limits_{i=1}^n x_i   = \sum\limits_{i=1}^n y_ix_i, \\
+        a_3\sum\limits_{i=1}^n x_i^3 + a_2 \sum\limits_{i=1}^n x_i^2 + a_1 \sum\limits_{i=1}^n x_i   + a_0 n     = \sum\limits_{i=1}^n y_i
+    \end{cases}
+    \Leftrightarrow \\ 
+    \Leftrightarrow
+    \small
+    \begin{cases}
+        a_3 \cdot 12399960614501 + a_2 \cdot 140734344073 + a_1 \cdot 1609636445 + a_0 \cdot 18560641 = 1446099192, \\
+        a_3 \cdot 140734344073   + a_2 \cdot 1609636445   + a_1 \cdot 18560641   + a_0 \cdot 215861   = 16639430, \\
+        a_3 \cdot 1609636445     + a_2 \cdot 18560641     + a_1 \cdot 215861     + a_0 \cdot 2533     = 193098, \\
+        a_3 \cdot 18560641       + a_2 \cdot 215861       + a_1 \cdot 2533       + a_0 \cdot 30       = 2261
+    \end{cases}
+\end{gather*}
+
+Решив систему уравнений получаем следующие коэффициенты:
+\begin{align*}
+    \begin{cases}
+        a_3 = -0,003749754152, \\
+        a_2 = 0,9439807581, \\
+        a_1 = -77,56771874, \\
+        a_0 = 2152,30806
+    \end{cases}
+\end{align*}
+
+Тогда кубическое уравнение регресии примет вид:
+\begin{align*}
+    \overline{\yx} = -0,0037 x^3 + 0,9440 x^2 - 77,5677 x + 2142,3080
+\end{align*}
+
+\newpage
+
+Найдем ошибки Можеле по формуле $\varepsilon_i = y_i - a_3 x^3 - a_2 x^2 - a_1 x - a_0$.
+Составим таблицу значений.
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        $\varepsilon_i$ & Значение & $\varepsilon_i$ & Значение &$\varepsilon_i$ & Значение \\ \hline
+        $\varepsilon_{1}$  & -0,04 & $\varepsilon_{11}$ & -14,49 & $\varepsilon_{21}$ & 0 \\ \hline
+        $\varepsilon_{2}$  & 9,82  & $\varepsilon_{12}$ & 2,14   & $\varepsilon_{22}$ & -1,47 \\ \hline
+        $\varepsilon_{3}$  & 5,88  & $\varepsilon_{13}$ & 0,41   & $\varepsilon_{23}$ & 4,14 \\ \hline
+        $\varepsilon_{4}$  & 6,56  & $\varepsilon_{14}$ & -1,57  & $\varepsilon_{24}$ & -4,85 \\ \hline
+        $\varepsilon_{5}$  & 1,25  & $\varepsilon_{15}$ & -13,49 & $\varepsilon_{25}$ & -1,85 \\ \hline
+        $\varepsilon_{6}$  & 3,82  & $\varepsilon_{16}$ & -39,75 & $\varepsilon_{26}$ & 16,43 \\ \hline
+        $\varepsilon_{7}$  & -3,68 & $\varepsilon_{17}$ & 3,14   & $\varepsilon_{27}$ & 7,15 \\ \hline
+        $\varepsilon_{8}$  & 0,88  & $\varepsilon_{18}$ & 0,14   & $\varepsilon_{28}$ & 5,99 \\ \hline
+        $\varepsilon_{9}$  & -9,49 & $\varepsilon_{19}$ & 12,25  & $\varepsilon_{29}$ & 18,46 \\ \hline
+        $\varepsilon_{10}$ & -2,49 & $\varepsilon_{20}$ & -24,53 & $\varepsilon_{30}$ & 19,25 \\ \hline
+    \end{tabular}
+\end{table}
+
+Детерминация равна:
+\begin{gather*}
+    R^2 = 1 - \frac{
+        \tfrac{1}{n} \sum\limits_{i=1}^{n} \varepsilon_i^2
+    }{\Db(y)} = 0,3828
+\end{gather*}
+
+Проверим гипотезу о значимости уравнения регрессии $H_0: R^2 = 0$.
+Вычислим статистику критерия:
+\begin{gather*}
+    F_{\text{набл}} = \frac{R^2}{1-R^2} \cdot \frac{n - m - 1}{m} = \frac{0,3828}{1 - 0,3828} \cdot \frac{30 - 3 - 1}{3} = 5,38\\
+    F_{\text{табл}}(df_1 = m; df_2 =n-m-1)=2,98
+\end{gather*}
+
+Поскольку $F_{\text{набл}} > F_{\text{табл}} \Rightarrow H_0$ отвергается и $R^2$ значим.
+
 
 \end{document}
