@@ -1,0 +1,62 @@
+\documentclass[utf8, a4paper, 14pt, russian, oneside]{book}
+
+\input{../include/lib}
+\input{../include/commands}
+
+% Команды для настройки содержания
+\renewcommand\contentsname{\center{Содержание}} % Вместо оглавления пишется содержание
+\addto{\captionsenglish}{\renewcommand{\bibname}{References}}
+\begin{document}
+
+\input{../include/title.tex}
+
+\tableofcontents
+\newpage
+\mysec{Описание данных}
+
+В качестве данных для анализа выберем оценки критиков и игроков на различные игры с сайта metacritic.
+Получим следующую выборку:
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        № & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 \\ \hline
+        $X_i$ & 92 & 88 & 86 & 72 & 78 & 88 & 87 & 86 & 85 & 85 & 85 & 84 & 82 & 77 & 80 \\ \hline
+        $Y_i$ & 86 & 91 & 84 & 68 & 67 & 85 & 76 & 79 & 67 & 74 & 62 & 77 & 72 & 63 & 55 \\ \hline
+        \multicolumn{16}{|c|}{} \\ \hline
+        № & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 & 27 & 28 & 29 & 30 \\ \hline
+        $X_i$ & 78 & 97 & 97 & 78 & 71 & 96 & 94 & 93 & 95 & 97 & 77 & 84 & 67 & 76 & 78 \\ \hline
+        $Y_i$ & 26 & 91 & 88 & 78 & 37 & 88 & 86 & 91 & 83 & 86 & 81 & 82 & 71 & 82 & 85 \\ \hline
+    \end{tabular} 
+\end{table}
+
+За $X_i$ обозначим оценки критиков, за $Y_i$ - оценки игроков.
+
+
+\newpage
+\mysec{Исследование  корреляционной зависимости}
+Для нахождения выборочного коэффицента корреляции необходимо найти следующие характеристики:
+\begin{gather*}
+    \overline{\xb} = \frac{92 + 88 + 86 + \ldots + 67 + 76 + 78}{30} = 84,4 \\ 
+    \Db(x) = \frac{\sum\limits_{i=1}^{n}(x_i - \overline{\xb})^2}{n} \\ 
+    \Db(x) = \frac{\left( (92 - 84,4)^2 + \ldots + (78 - 84,4)^2 \right)}{30} = 66,38 \\
+    \sigma(x) = \sqrt{\Db(x)} = 8,15 \\
+    \overline{\yb} = \frac{86 + 91 + 84 + \ldots + 71 + 82 + 85}{30} = 75,37 \\
+    \Db(y) = \frac{\left((86 - 75,37)^2 + \ldots + (85 - 75,37)^2 \right)}{30} = 224,5
+    \sigma(y) = \sqrt{\Db(y)} = 14,98 \\
+\end{gather*}
+
+Найдем коэффициент ковариации:
+\begin{gather*}
+    \cov(x,y) = \frac{1}{n} \sum_{i=1}^{n}(x_i - \overline{\xb})(y_i - \overline{\yb}) \\
+    \cov(x,y) = 73,1
+\end{gather*}
+
+Следовательно, корреляция равна:
+\begin{align*}
+    \r(x, y) = \frac{\cov(x, y)}{\sigma(x) \cdot \sigma(y)} =  \frac{73,1}{8,15 \cdot 14,98} = 0,599.
+\end{align*}
+
+Проверим значимость коэффицента корреляции. $H_0 : \r(x, y) = 0$. Для этого найдем статистику критерия.
+
+\end{document}
