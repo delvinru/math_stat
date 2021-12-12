@@ -790,4 +790,25 @@ $\tfrac{1}{2} \ln\left(\tfrac{\r + 1}{1-\r}\right), \tfrac{1}{\sqrt{n - 3}}$ т.
 \newpage
 \mysec{Таблица сравнений}
 
+Составим таблицу сравнений полученных уравнений регрессии:
+{
+\renewcommand{\arraystretch}{2}
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Модели регрессии & Средняя ошибка & Формула \\ \hline 
+        Линейная & $R^2 = 0,359$ & $\overline{\yx} = 1,102x - 17,668$ \\ \hline
+        Квадратичная & $R^2 = 0,3621$ & $\overline{\yx} = 0,0116x^2-0,8567x + 63,8734$ \\ \hline
+        Кубическая & $R^2 = 0,3828$ & $\begin{aligned}
+                                            \overline{\yx} = -0,0037x^3 + 0,9440x^2 - \\
+                                            - 77,5677x + 2142,308
+                                        \end{aligned}$ \\ \hline
+        Показательная & $R^2 = 146,76$ & $\overline{\yx} = 17,418 \cdot 1,017^x$ \\ \hline
+        Степенная & $R^2 = 146,68$ & $\overline{\yx} = 0,1418 \cdot x^{4,0954}$ \\ \hline
+        Обратная & $R^2 = 166,35$ & $\overline{\yx} = \dfrac{1}{-0,0004x + 0,0386}$ \\ \hline
+    \end{tabular}
+\end{table}
+}
+
 \end{document}
