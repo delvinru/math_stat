@@ -234,4 +234,58 @@
 \newpage
 \mysec{Доверительный интервал для коэффициента корреляции}
 
+Для построения доверительного интервала воспользуемся преобразованием Фишера, которое имеет нормальное распределение с параметрами
+$\tfrac{1}{2} \ln\left(\tfrac{\r + 1}{1-\r}\right), \tfrac{1}{\sqrt{n - 3}}$ т.е.:
+\begin{gather*}
+    z = \frac{1}{2}\ln\left(\frac{\r + 1}{1 - \r}\right) \approx
+    N \left(
+        \frac{1}{2} \ln
+        \left(
+            \frac{\rhob + 1}{1 - \rhob}
+        \right),
+            \frac{1}{\sqrt{n - 3}}
+    \right)
+\end{gather*}
+
+Тогда при $\alpha = 0,05$:
+\begin{gather*}
+    P(|z - M(z)| < \epsilon) = 2\Phi(\epsilon\sqrt{(n-3)}) = 0,95 \Rightarrow \epsilon\sqrt{n-3} = 1,96 \Rightarrow \epsilon = \frac{1,96}{\sqrt{n-3}} \\
+    |z - M(z)| < \frac{1,96}{\sqrt{n-3}} \Leftrightarrow \\
+    \Leftrightarrow
+    \frac{1}{2}\ln\left(
+        \frac{\r + 1}{1 - \r}
+    \right)
+    -
+    \frac{1,96}{\sqrt{n-3}}
+    <
+    \frac{1}{2} \ln \left(
+        \frac{\rhob + 1}{1 - \rhob}
+    \right)
+    <
+    \frac{1}{2} \ln \left(
+        \frac{\r + 1}{1 - \r}
+    \right)
+    +
+    \frac{1,96}{\sqrt{n - 3}}
+\end{gather*}
+
+Упрощая полученное выражение получим:
+\begin{align*}
+    \frac{1 + \r}{1 - \r} \cdot e^{-\tfrac{3,92}{\sqrt{n-3}}}
+    <
+    \frac{\rhob + 1}{1 - \rhob}
+    <
+    \frac{1 + \r}{1 - \r} \cdot e^{\tfrac{3,92}{\sqrt{n-3}}}
+\end{align*}
+
+Подставим значения $\r$ и $n$ получим неравенство:
+\begin{align*}
+    1,875 < \frac{\rhob + 1}{1 - \rhob} < 8,479
+\end{align*}
+
+После решения неравенства получим, что $0,3 <\rhob < 0,789$ - доверительный интервал для коэффициента корреляции.
+\newpage
+
+\mysec{Регрессивный анализ}
+
 \end{document}
