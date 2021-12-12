@@ -249,7 +249,7 @@ $\tfrac{1}{2} \ln\left(\tfrac{\r + 1}{1-\r}\right), \tfrac{1}{\sqrt{n - 3}}$ т.
 
 Тогда при $\alpha = 0,05$:
 \begin{gather*}
-    P(|z - M(z)| < \epsilon) = 2\Phi(\epsilon\sqrt{(n-3)}) = 0,95 \Rightarrow \epsilon\sqrt{n-3} = 1,96 \Rightarrow \epsilon = \frac{1,96}{\sqrt{n-3}} \\
+    P(|z - M(z)| < \varepsilon) = 2\Phi(\varepsilon\sqrt{(n-3)}) = 0,95 \Rightarrow \varepsilon\sqrt{n-3} = 1,96 \Rightarrow \varepsilon = \frac{1,96}{\sqrt{n-3}} \\
     |z - M(z)| < \frac{1,96}{\sqrt{n-3}} \Leftrightarrow \\
     \Leftrightarrow
     \frac{1}{2}\ln\left(
@@ -287,5 +287,180 @@ $\tfrac{1}{2} \ln\left(\tfrac{\r + 1}{1-\r}\right), \tfrac{1}{\sqrt{n - 3}}$ т.
 \newpage
 
 \mysec{Регрессивный анализ}
+Регрессией называется функция проивзольного вида, которая определена как условное математическое ожидание $Y$ при условии $X=x$, т.е.
+\begin{align*}
+    E(Y|X) = u(x)
+\end{align*}
+
+\mysubsec{Линейная регрессия}
+Линейное уравнение регрессии в общем вдие записывается следующим образом:
+\begin{align*}
+    \overline{\yx} = kx + b
+\end{align*}
+
+Составим функцию $\Upphi(k, b) = \sum_{i=1}^{n} (y_i - kx_i - b)^2$ и найдем частные производные этой функции:
+\begin{align*}
+    \begin{cases}
+        \der{\Upphi}{k} = 0 \\
+        \der{\Upphi}{b} = 0 \\
+    \end{cases}
+    \Leftrightarrow
+    \begin{cases}
+        2 \sum (y_i - kx_xi - b)(-x_i) = 0 \\
+        2 \sum (y_i - kx_xi - b)(-1) = 0
+    \end{cases}
+    \Leftrightarrow
+    \begin{cases}
+        k\sum x_i^2 +b \sum x_i = \sum y_i x_i \\
+        k\sum x_i +b n = \sum y_i
+    \end{cases}
+\end{align*}
+
+Найдем оценки параметров:
+\begin{gather*}
+    b = \frac{\sum y_i}{n} - k \sum \frac{x_i}{n} = \overline{y} - k\overline{x} \\
+    k\sum x_i^2 + \overline{y} - k \overline{x} \sum x_i = \sum y_i x_i \\
+    k \left( \sum x_i^2 - \overline{x} \sum x_i \right) = \sum y_ix_i - \overline{y}\sum x_i \\
+    k = \frac{
+        \sum y_ix_i - \overline{y}\sum x_i
+    }{
+        \sum x_i^2 - \overline{x} \sum x_i
+    } = 
+    \frac{\cov{x, y}}{\Db(x)} \\
+    b = \overline{y} - \frac{\cov(x,y)}{\Db(x)}\overline{x}
+\end{gather*}
+
+Таким образом коэффициенты равны:
+\begin{align*}
+    b = -17,668; k =  1,102   
+\end{align*}
+
+И общее уравнение линейной регрессии будет выглядеть:
+\begin{align*}
+    \overline{\yx} = 1,102x - 17,668
+\end{align*}
+
+Теперь Вычислим ошибки модели по формуле $\varepsilon_i = y_i - kx_i - b$. В качестве примера посчитаем первые два значения:
+\begin{gather*}
+    \varepsilon_1 = 86 - 1,102 \cdot 92 + 17,668 = 2,30 \\
+    \varepsilon_2 = 91 - 1,102 \cdot 88 + 17,668 = 11,70
+\end{gather*}
+
+Построим таблицу значений:
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+        \hline
+        $\varepsilon_i$ & Значение & $\varepsilon_i$ & Значение & $\varepsilon_i$ & Значение  \\ \hline
+        $\varepsilon_1$ & 2,30  & $\varepsilon_{11}$ & -13,99    &$\varepsilon_{21}$ & -0,11  \\ \hline
+        $\varepsilon_2$ & 11,70  & $\varepsilon_{12}$ & 2,11     & $\varepsilon_{22}$ & 0,09  \\ \hline
+        $\varepsilon_3$ & 6,91  & $\varepsilon_{13}$ & -0,69     & $\varepsilon_{23}$ & 6,19  \\ \hline
+        $\varepsilon_4$ & 6,33  & $\varepsilon_{14}$ & -4,18     &$\varepsilon_{24}$ & -4,01  \\ \hline
+        $\varepsilon_5$ & -1,28  & $\varepsilon_{15}$ & -15,48   &$\varepsilon_{25}$ & -3,21  \\ \hline
+        $\varepsilon_6$ & 5,70  & $\varepsilon_{16}$ & -42,28    &$\varepsilon_{26}$ & 13,82  \\ \hline
+        $\varepsilon_7$ & -2,19  & $\varepsilon_{17}$ & 1,79     & $\varepsilon_{27}$ & 7,11  \\ \hline
+        $\varepsilon_8$ & 1,91  & $\varepsilon_{18}$ & -1,21     &$\varepsilon_{28}$ & 14,84  \\ \hline
+        $\varepsilon_9$ & -8,99 &  $\varepsilon_{19}$ & 9,72     &$\varepsilon_{29}$ & 15,93  \\ \hline
+        $\varepsilon_{10}$ & -1,99 & $\varepsilon_{20}$ & -23,56 &$\varepsilon_{30}$ & 16,72  \\ \hline
+    \end{tabular} 
+\end{table}
+
+Далее вычислим коэффициент детерминации по формуле:
+\begin{align*}
+    R^2 = 1 - \frac{\sum(y_i - kx_i - b)^2}{\sum(y_i - \overline{y})^2} = 1 - \frac{\tfrac{1}{2}\sum \varepsilon_i^2}{\Db(y)} = 0,359
+\end{align*}
+
+Проверим значимость. $H_0 : R^2 = 0$ (уравнение регресии незначимо). Для этого вычислим статистику критерия:
+\begin{gather*}
+    F_{\text{набл}} = \frac{R^2}{1-R^2}(n-2) = 15,68 \\
+    F_{\text{табл}}  =(df_1 = 1; df_2 = n-2) = 4,196 \\
+    F_{\text{набл}} > F_{\text{табл}} \Rightarrow H_0\  \text{отклоняется}.
+\end{gather*}
+\newpage
+
+\mysubsec{Квадратичная регрессия}
+
+Построим уравнение квадратичной регрессии $\overline{\yx} = a_2x^2 + a_1x+a_0$.
+\begin{gather*}
+    \Upphi(a_0, a_1, a_2) = \sum_{i=1}^2 (y_i - a_0 - a_1x_i - a_2x_i^2)^2 \rightarrow min \\
+    \begin{cases}
+        \der{\Upphi}{a_2} = 0, \\
+        \der{\Upphi}{a_1} = 0, \\
+        \der{\Upphi}{a_0} = 0
+    \end{cases}
+    \Leftrightarrow
+    \begin{cases}
+        a_2 \sum\limits_{i=1}^{n} x_i^4 + a_1 \sum\limits_{i=1}^{n} x_i^3 + a_0 \sum\limits_{i=1}^{n} x_i^2 = \sum\limits_{i=1}^n y_i x_i^2, \\
+        a_2 \sum\limits_{i=1}^{n} x_i^3 + a_1 \sum\limits_{i=1}^{n} x_i^2 + a_0 \sum\limits_{i=1}^{n} x_i = \sum\limits_{i=1}^n y_i x_i, \\
+        a_2 \sum\limits_{i=1}^{n} x_i^2 + a_1 \sum\limits_{i=1}^{n} x_i + a_0 n = \sum\limits_{i=1}^n y_i
+    \end{cases}
+    \Leftrightarrow \\
+    \Leftrightarrow
+    \begin{cases}
+        a_2 \cdot 1609636445 + a_1 \cdot 18560641 + a_0 \cdot 215861 = 16639430, \\
+        a_2 \cdot 18560641 + a_1 \cdot 215861 + a_0 \cdot 2533 = 193098, \\
+        a_2 \cdot 215861 + a_1 \cdot 2533 + a_0 \cdot 30 = 2261
+    \end{cases}
+\end{gather*}
+
+Решив систему, получим следующий результат:
+\begin{align*}
+    \begin{cases}
+        a_2 = 0,01165032285, \\
+        a_1 = -0,8567129022, \\
+        a_0 = 63,87344805
+    \end{cases}
+\end{align*}
+
+Тогда уравнение квадратичной регрессии имеет вид:
+\begin{align*}
+    \overline{\yx} = 0,0116 x^2 - 0,8567 x + 63,8734
+\end{align*}
+
+Теперь подсчитаем коэффициент детерминации, перед этим подсчитав ошибки модели. Посчитаем несколько значений в качестве примера:
+\begin{gather*}
+    \varepsilon_i = y_i - 0,0116x_i^2 + 0,8567x_i - 63,8734 \\
+    \varepsilon_1 = 86 - 0,0116 \cdot 92^2  + 0,8567 \cdot 92 - 63,8734 = 2,33\\
+    \varepsilon_2 = 91 - 0,0116 \cdot 88 + 0,8567 \cdot 88 - 63,8734 = 12,30
+\end{gather*}
+
+\newpage
+
+Построим таблицу значений:
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        $\varepsilon_i$ & Значение & $\varepsilon_i$ & Значение & $\varepsilon_i$ & Значение \\ \hline
+        $\varepsilon_{1}$  & 2,33  & $\varepsilon_{11}$ & -13,23 & $\varepsilon_{21}$ & -1,00 \\ \hline
+        $\varepsilon_{2}$  & 12,30 & $\varepsilon_{12}$ & 2,88   & $\varepsilon_{22}$ & -0,28 \\ \hline
+        $\varepsilon_{3}$  & 7,64  & $\varepsilon_{13}$ & 0,04   & $\varepsilon_{23}$ & 6,04 \\ \hline
+        $\varepsilon_{4}$  & 5,41  & $\varepsilon_{14}$ & -3,98  & $\varepsilon_{24}$ & -4,63 \\ \hline
+        $\varepsilon_{5}$  & -0,93 & $\varepsilon_{15}$ & -14,89 & $\varepsilon_{25}$ & -4,39 \\ \hline
+        $\varepsilon_{6}$  & 6,30  & $\varepsilon_{16}$ & -41,93 & $\varepsilon_{26}$ & 14,02 \\ \hline
+        $\varepsilon_{7}$  & -1,52 & $\varepsilon_{17}$ & 0,61   & $\varepsilon_{27}$ & 7,88 \\ \hline
+        $\varepsilon_{8}$  & 2,64  & $\varepsilon_{18}$ & -2,39  & $\varepsilon_{28}$ & 12,23 \\ \hline
+        $\varepsilon_{9}$  & -8,22 & $\varepsilon_{19}$ & 10,07  & $\varepsilon_{29}$ & 15,94 \\ \hline
+        $\varepsilon_{10}$ & -1,23 & $\varepsilon_{20}$ & -24,78 & $\varepsilon_{30}$ & 17,07 \\ \hline
+    \end{tabular}
+\end{table}
+\begin{align*}
+    R^2 = 1 - \frac{
+        \tfrac{1}{n} \sum\limits_{i=1}^n \varepsilon_i^2
+    }{\Db(y)}
+    =
+    1 - \frac{4295,9505}{30 \cdot 224,5} = 0,3621
+\end{align*}
+
+Проверим гипотезу $H_0$ о значимости $R^2$:
+\begin{gather*}
+    F_{\text{набл}} = \frac{R^2}{1-R^2} \left( \frac{n - m - 1}{m} \right) \\
+    F_{\text{набл}} = \frac{0,3621}{1 - 0,3621} \cdot \frac{30 - 2 -1}{2} = 7,665 \\
+    F_{\text{табл}} = 3,354
+\end{gather*}
+
+Получим, что $F_{\text{набл}} > F_{\text{табл}} \Rightarrow H_0$ отклоняется. 
+
+\mysubsec{Кубическая регрессия}
 
 \end{document}
