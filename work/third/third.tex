@@ -537,5 +537,97 @@ $\tfrac{1}{2} \ln\left(\tfrac{\r + 1}{1-\r}\right), \tfrac{1}{\sqrt{n - 3}}$ т.
 
 Поскольку $F_{\text{набл}} > F_{\text{табл}} \Rightarrow H_0$ отвергается и $R^2$ значим.
 
+\newpage
+\mysubsec{Показательная регрессия}
+
+Уравнение показательной регрессии в общем виде выглядит как $\overline{\yx} = ba^x$. Применим к этому уравнению метод линеризации:
+\begin{align*}
+    \ln(\overline{\yx}) = \ln(b) + x\ln(a)
+\end{align*}
+
+Сделаем замену $z = \ln(y); \hat{b} = \exp{(\hat{B})}; \hat{a} = \exp{(\hat{k})}$ и получим:
+\begin{align*}
+    \overline{\zx} = \hat{k}x + \hat{B}
+\end{align*}
+
+Рассмотрим наблюдения вида $(x_1, \ln(y_1)); \ldots; (x_n; \ln(y_n))$ и используем формулу:
+\begin{align*}
+    \frac{
+        \overline{\yx} - \overline{\yb}
+    }{
+        \sigma_{\text{в}}(y)
+    } = \r(x,y) \frac{x - \overline{\xb}}{\sigma_{\text{в}}(x)}
+\end{align*}
+
+Сгруппировав возле $\overline{\yx}$ и $x$ коэффициенты получим соответствующие $\hat{k}$ и $\hat{B}$.
+\begin{align*}
+    \overline{\zx} = \frac{
+        \r(x, \ln(y)) \sigma_{\text{в}}(\ln(y))
+    }{
+        \sigma_{\text{в}}(x)
+    }x
+    -
+    \frac{
+        \sigma_{\text{в}}(\ln(y))
+    }{
+        \sigma_{\text{в}}(x)
+    }\overline{\xb}
+    +
+    \overline{\ln{(\yb)}}
+\end{align*}
+
+Пересчитаем коэффициенты корреляции, среднее квадратичное отклонение и среднее выборочное значение $y_i$.
+\begin{gather*}
+    \overline{\ln(\yb)} = \frac{
+        \sum\limits_{i=1}^n n_i \ln(y_i)
+    }{30} = 4,29 \\
+    \sigma_{\text{в}}(\ln(y)) = 0,265 \\
+    \r(x, \ln(y)) = \frac{\cov{(x, \ln(y))}}{\sigma(x)\sigma(\ln(y))} = 
+    \frac{
+        \sum\limits_{i=1}^n (x_i - \overline{\xb})(\ln(y_i) - \overline{\ln(\yb)})
+    }{
+        n\sigma(x)\sigma(\ln(y))
+    } = 0,523
+\end{gather*}
+
+Получим следующее уравнение:
+\begin{align*}
+    \overline{\zx} = \frac{0,523 \cdot 0,265}{8,15}x - \frac{0,265 \cdot 0,523 \cdot 84,43}{8,15} + 4,29 = 0,017x + 2,8575
+\end{align*}
+
+Произведем обратную замену и получим следующие коэффициенты показательной регрессии:
+\begin{align*}
+    \hat{a} = \exp(0,017) = 1,017; \hat{b} = \exp(2,8575) = 17,418
+\end{align*}
+
+Значит уравнение показательной регрессии имеет вид:
+\begin{align*}
+    \overline{\yx} = 17,418 \cdot 1,017^x
+\end{align*}
+
+\newpage
+Найдем ошибки уравнения регрессии по формуле $\varepsilon_i = y_i - ba^{x_i}$.
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        $\varepsilon_i$ & Значение & $\varepsilon_i$ & Значение &$\varepsilon_i$ & Значение \\ \hline
+        $\varepsilon_{1}$  & 2,70  & $\varepsilon_{11}$ & -11,95 & $\varepsilon_{21}$ & -1,17 \\ \hline
+        $\varepsilon_{2}$  & 13,18 & $\varepsilon_{12}$ & 4,30   & $\varepsilon_{22}$ & -0,18 \\ \hline
+        $\varepsilon_{3}$  & 8,78  & $\varepsilon_{13}$ & 1,73   & $\varepsilon_{23}$ & 6,27 \\ \hline
+        $\varepsilon_{4}$  & 8,72  & $\varepsilon_{14}$ & -1,54  & $\varepsilon_{24}$ & -4,66 \\ \hline
+        $\varepsilon_{5}$  & 1,35  & $\varepsilon_{15}$ & -12,92 & $\varepsilon_{25}$ & -4,70 \\ \hline
+        $\varepsilon_{6}$  & 7,18  & $\varepsilon_{16}$ & -39,70 & $\varepsilon_{26}$ & 16,46 \\ \hline
+        $\varepsilon_{7}$  & -0,51 & $\varepsilon_{17}$ & 0,30   & $\varepsilon_{27}$ & 9,30 \\ \hline
+        $\varepsilon_{8}$  & 3,78  & $\varepsilon_{18}$ & -2,70  & $\varepsilon_{28}$ & 16,55 \\ \hline
+        $\varepsilon_{9}$  & -6,95 & $\varepsilon_{19}$ & 12,35  & $\varepsilon_{29}$ & 18,55 \\ \hline
+        $\varepsilon_{10}$ & 0,05  & $\varepsilon_{20}$ & -21,28 & $\varepsilon_{30}$ & 19,35 \\ \hline
+    \end{tabular}
+\end{table}
+\begin{align*}
+    R^2 = 1 - \frac{
+        \tfrac{1}{n}\sum\limits_{i=1}^n \varepsilon_i^2
+    }{\Db(y)} = 146,76
+\end{align*}
 
 \end{document}
