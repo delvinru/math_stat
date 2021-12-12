@@ -370,7 +370,7 @@ $\tfrac{1}{2} \ln\left(\tfrac{\r + 1}{1-\r}\right), \tfrac{1}{\sqrt{n - 3}}$ т.
     R^2 = 1 - \frac{\sum(y_i - kx_i - b)^2}{\sum(y_i - \overline{y})^2} = 1 - \frac{\tfrac{1}{2}\sum \varepsilon_i^2}{\Db(y)} = 0,359
 \end{align*}
 
-Проверим значимость. $H_0 : R^2 = 0$ (уравнение регресии незначимо). Для этого вычислим статистику критерия:
+Проверим значимость. $H_0 : R^2 = 0$ (уравнение регрессии незначимо). Для этого вычислим статистику критерия:
 \begin{gather*}
     F_{\text{набл}} = \frac{R^2}{1-R^2}(n-2) = 15,68 \\
     F_{\text{табл}}  =(df_1 = 1; df_2 = n-2) = 4,196 \\
@@ -494,7 +494,7 @@ $\tfrac{1}{2} \ln\left(\tfrac{\r + 1}{1-\r}\right), \tfrac{1}{\sqrt{n - 3}}$ т.
     \end{cases}
 \end{align*}
 
-Тогда кубическое уравнение регресии примет вид:
+Тогда кубическое уравнение регрессии примет вид:
 \begin{align*}
     \overline{\yx} = -0,0037 x^3 + 0,9440 x^2 - 77,5677 x + 2142,3080
 \end{align*}
@@ -555,22 +555,22 @@ $\tfrac{1}{2} \ln\left(\tfrac{\r + 1}{1-\r}\right), \tfrac{1}{\sqrt{n - 3}}$ т.
     \frac{
         \overline{\yx} - \overline{\yb}
     }{
-        \sigma_{\text{в}}(y)
-    } = \r(x,y) \frac{x - \overline{\xb}}{\sigma_{\text{в}}(x)}
+        \sb(y)
+    } = \r(x,y) \frac{x - \overline{\xb}}{\sb(x)}
 \end{align*}
 
 Сгруппировав возле $\overline{\yx}$ и $x$ коэффициенты получим соответствующие $\hat{k}$ и $\hat{B}$.
 \begin{align*}
     \overline{\zx} = \frac{
-        \r(x, \ln(y)) \sigma_{\text{в}}(\ln(y))
+        \r(x, \ln(y)) \sb(\ln(y))
     }{
-        \sigma_{\text{в}}(x)
+        \sb(x)
     }x
     -
     \frac{
-        \sigma_{\text{в}}(\ln(y))
+        \sb(\ln(y))
     }{
-        \sigma_{\text{в}}(x)
+        \sb(x)
     }\overline{\xb}
     +
     \overline{\ln{(\yb)}}
@@ -581,7 +581,7 @@ $\tfrac{1}{2} \ln\left(\tfrac{\r + 1}{1-\r}\right), \tfrac{1}{\sqrt{n - 3}}$ т.
     \overline{\ln(\yb)} = \frac{
         \sum\limits_{i=1}^n n_i \ln(y_i)
     }{30} = 4,29 \\
-    \sigma_{\text{в}}(\ln(y)) = 0,265 \\
+    \sb(\ln(y)) = 0,265 \\
     \r(x, \ln(y)) = \frac{\cov{(x, \ln(y))}}{\sigma(x)\sigma(\ln(y))} = 
     \frac{
         \sum\limits_{i=1}^n (x_i - \overline{\xb})(\ln(y_i) - \overline{\ln(\yb)})
@@ -628,6 +628,89 @@ $\tfrac{1}{2} \ln\left(\tfrac{\r + 1}{1-\r}\right), \tfrac{1}{\sqrt{n - 3}}$ т.
     R^2 = 1 - \frac{
         \tfrac{1}{n}\sum\limits_{i=1}^n \varepsilon_i^2
     }{\Db(y)} = 146,76
+\end{align*}
+
+\newpage
+\mysubsec{Степенная регрессия}
+
+Уравнение степенной регрессии в общем виде: $\overline{\yx} = bx^a$.
+Применим к этому уравнению метод линеризации:
+\begin{align*}
+    \ln(\overline{\yx}) = \ln b + a \ln x
+\end{align*}
+
+Сделаем замену $z = \ln y; \hat{b} = \exp{(\hat{B})}; \ln x = u$:
+\begin{align*}
+    \overline{\zx} = \hat{a}u + \hat{B}
+\end{align*}
+
+Рассмотрим наблюдения вида $\ln(x_1, \ln y_1); \ldots; (\ln x_n; \ln y_n)$ и используем следующую формулу:
+\begin{align*}
+    \frac{
+        \overline{\yx} - \overline{\yb}
+    }{\sb(y)}
+    =
+    \r(x,y) \frac{x - \overline{\xb}}{\sb(x)}
+\end{align*}
+
+Пересчитаем коэффициенты корреляции, среднее квадратичное отклонение и среднее выборочное значение $y_i$ и $x_i$:
+\begin{gather*}
+    \overline{\ln \yb} = \frac{
+        \sum\limits_{i=1}^n n_i \ln y_i
+    }{30} = 4,29 \\
+    \overline{\ln \xb} = \frac{
+        \sum\limits_{i=1}^n n_i \ln x_i
+    }{30} = 4,43 \\
+    \sb(\ln y) = 0,265 \\
+    \sb(\ln x) = 0,098 \\
+    \r(\ln x, \ln y) = \frac{\cov(\ln x, \ln y)}{\sigma(\ln x)\sigma(\ln y)}
+    =
+    \frac{
+        \sum\limits_{i=1}^n (\ln x_i - \overline{\ln \xb})(\ln y_i - \overline{\ln \yb})
+    }{
+        n \sigma(\ln x)\sigma(\ln y)
+    }=
+    0,520
+\end{gather*}
+
+Получим следующее уравнение:
+\begin{align*}
+    \zx = \frac{0,520 \cdot 0,265}{0,098}x - \frac{0,265 \cdot 0,520 \cdot 4,43}{0,098} + 4,29 = 1,4099x - 1,9537
+\end{align*}
+
+Произведем обратную замену и получим следующие коэффициенты степенной регрессии:
+\begin{align*}
+    \hat{a} = 1,4099; \hat{b} = \exp(-1,9537) = 0,1418
+\end{align*}
+
+Значит, уравнение степенной регрессии примет вид:
+\begin{align*}
+    \overline{\yx} = 0,1418 \cdot x^{4,0954}
+\end{align*}
+\newpage
+
+Найдем ошибки уравнения регрессии по формуле $\varepsilon_i = y_i - bx_i^a$ и составим таблицу значений:
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        $\varepsilon_i$ & Значение & $\varepsilon_i$ & Значение &$\varepsilon_i$ & Значение \\ \hline
+        $\varepsilon_{1}$  & 2,78  & $\varepsilon_{11}$ & -12,43 & $\varepsilon_{21}$ & -0,36 \\ \hline
+        $\varepsilon_{2}$  & 12,84 & $\varepsilon_{12}$ & 3,80   & $\varepsilon_{22}$ & 0,22  \\ \hline
+        $\varepsilon_{3}$  & 8,33  & $\varepsilon_{13}$ & 1,25   & $\varepsilon_{23}$ & 6,50  \\ \hline
+        $\varepsilon_{4}$  & 9,10  & $\varepsilon_{14}$ & -1,75  & $\varepsilon_{24}$ & -4,07 \\ \hline
+        $\varepsilon_{5}$  & 1,06  & $\varepsilon_{15}$ & -13,33 & $\varepsilon_{25}$ & -3,66 \\ \hline
+        $\varepsilon_{6}$  & 6,84  & $\varepsilon_{16}$ & -39,94 & $\varepsilon_{26}$ & 16,26 \\ \hline
+        $\varepsilon_{7}$  & -0,91 & $\varepsilon_{17}$ & 1,34   & $\varepsilon_{27}$ & 8,80  \\ \hline
+        $\varepsilon_{8}$  & 3,33  & $\varepsilon_{18}$ & -1,66  & $\varepsilon_{28}$ & 17,78 \\ \hline
+        $\varepsilon_{9}$  & -7,43 & $\varepsilon_{19}$ & 12,06  & $\varepsilon_{29}$ & 18,43 \\ \hline
+        $\varepsilon_{10}$ & -0,43 & $\varepsilon_{20}$ & -20,75 & $\varepsilon_{30}$ & 19,06 \\ \hline
+    \end{tabular}
+\end{table}
+\begin{align*}
+    R^2 = 1 - \frac{
+        \tfrac{1}{n} \sum\limits_{i=1}^n \varepsilon_i^2
+    }{\Db(y)} = 146,68
 \end{align*}
 
 \end{document}
