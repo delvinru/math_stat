@@ -119,4 +119,56 @@
     } = 0,3642
 \end{gather*}
 
+\mysec{Значимость множественного коэффициента корреляции}
+Проверим значимость множественного коэффициента корреляции $H_0: r^2_z = 0$ - множественный коэффициент корреляции незначим.
+
+Вычислим статистику критерия:
+\begin{gather*}
+    F_{\text{набл}} = \frac{\frac{r_z^2}{2}}{\frac{1-r_z^2}{n-3}} = 2,0643; \\
+    F_{\text{табл}}(\alpha=0,05; df_1=2;df_2=n-3) = 3,354; \\
+    F_{\text{набл}} < F_{\text{табл}} \Rightarrow H_0\  \text{не отклоняется и}\  r^2_z \  \text{не значим}
+\end{gather*}
+
+\mysec{Уравнение регрессии}
+
+Выпишем уравнение регрессии $z$ по $x, y$:
+\begin{gather*}
+    \overline{z}(x,y) - \overline{\zb} = b_{xz/y}(x - \overline{\xb}) + b_{yz/x}(y - \overline{\yb})
+\end{gather*}
+
+Найдем коэффициенты уравнения выше:
+\begin{gather*}
+    b_{xz/y} = r_{xz/y} \frac{S_{z/y}}{S_{x/y}} = 0,1559; \\ 
+    b_{yz/x}=r_{yz/x}\frac{S_{z/x}}{S_{y/x}} = -0,2272; \\
+    \overline{z}(x,y) - 89,33 = 0,1559(x - 83,77) - 0,2272(y - 82,80);\\
+    \overline{z}(x,y) = 0,1559x - 0,2272y + 95,08
+\end{gather*}
+
+\mysec{Доверительные интервалы для коэффициентов множественной регрессии}
+\begin{gather*}
+    t_1=\frac{
+        (b_{xz/y}-\beta_{xz/y})S_{x/y}\sqrt{n-3}
+    }{
+        S_{z/y}\sqrt{1-r_{zx/y}^2}
+    } \\
+    t_2=\frac{
+        (b_{yz/x}-\beta_{yz/x})S_{y/x}\sqrt{n-3}
+    }{
+        S_{z/x}\sqrt{1-r_{zy/x}^2}
+    }
+\end{gather*}
+Для построения доверительных интервалов нужно решить следующие
+неравенства:
+\begin{gather*}
+\left|t_1=\frac{(b_{xz/y}-\beta_{xz/y})S_{x/y}\sqrt{n-3}}{S_{z/y}\sqrt{1-r_{zx/y}^2}}\right|<t_{\text{табл}} \\
+\left|t_2=\frac{(b_{yz/x}-\beta_{yz/x})S_{y/x}\sqrt{n-3}}{S_{z/x}\sqrt{1-r_{zy/x}^2}}\right|<t_{\text{табл}}
+\end{gather*}
+, где $t_{\text{табл}}(\alpha = 0,05;df=n-3)=2,052$.
+
+Решив неравенства получим следующие интервалы:
+\begin{gather*}
+    -0,0965 < \beta_{xz/y} < 0,4083 \\
+    -0,4731 < \beta_{yz/x} < 0,0187
+\end{gather*}
+
 \end{document}
