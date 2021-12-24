@@ -171,4 +171,136 @@
     -0,4731 < \beta_{yz/x} < 0,0187
 \end{gather*}
 
+\mysec{Значимость частных коэффициентов корреляции}
+
+Проверим значимость частных коэффициентов корреляции $H_0 : \rpriv = 0$.
+\begin{gather*}
+    t = \frac{
+        \rpriv \sqrt{n-3}
+    }{
+        \sqrt{1 - \rpriv^2}
+    } \\ 
+    t_{xy/z} = 1,81; t_{xz/y} = -1,79; t_{yz/x} = 1,27;\\
+    t_{\text{табл}}(\alpha=0,05; df = n-3) = 2,052; \\
+    |t_{xy/z}| < t_{\text{табл}} \Rightarrow H_0 \  \text{принимается и коэффициент}\ r_{xy/z}\  \text{не значим}; \\
+    |t_{xz/y}| < t_{\text{табл}} \Rightarrow H_0 \  \text{принимается и коэффициент}\ r_{xy/y}\  \text{не значим}; \\
+    |t_{yz/x}| < t_{\text{табл}} \Rightarrow H_0 \  \text{принимается и коэффициент}\ r_{yz/x}\  \text{не значим};
+\end{gather*}
+
+\mysec{Построение доверительного интервала для частного коэффициента корреляции и множественного коэффициента корреляции}
+
+Построим доверительный интервал для $r_{xy/z}$:
+\begin{gather*}
+    Z = \frac{1}{2}\ln\left(\frac{1+\rpriv}{1-\rpriv}\right) \approx N\left(
+        \frac{1}{2} \ln \left( \frac{1+\rpriv}{1-\rpriv} \right); \frac{1}{\sqrt{n-4}}
+    \right)
+\end{gather*}
+
+Тогда доверительный интервал для частного коэффициента корреляции находится при помощи неравенства:
+\begin{gather*}
+    \frac{1}{2} \ln \left(
+        \frac{1+r_{xy/z}}{1-r_{xy/z}}
+    \right)
+    -
+    \frac{1,96}{\sqrt{n-4}}
+    <
+    \frac{1}{2} \ln \left(
+        \frac{1+\rho_{xy/z}}{1-\rho_{xy/z}}
+    \right)
+    <
+    \frac{1}{2} \ln \left(
+        \frac{1+r_{xy/z}}{1-r_{xy/z}}
+    \right)
+    +
+    \frac{1,96}{\sqrt{n-4}}
+\end{gather*}
+Упростив выражение, получим следующее неравенство:
+\begin{gather*}
+    -0,0428
+    <
+    \frac{1}{2} \ln \left(
+        \frac{1+\rho_{xy/z}}{1-\rho_{xy/z}}
+    \right)
+    <
+    0,7259
+\end{gather*}
+В итоге получим, следующую систему:
+\begin{gather*}
+    \begin{cases}
+        \rho_{xy/z} > -0,0428   \\
+        \rho_{xy/z} < 0,62
+    \end{cases}
+\end{gather*}
+
+Таким образом, доверительный интервал для частного коэффициента корреляции $r_{xy/z}: -0,04 < \rho_{xy/z} < 0,62$.
+Построим доверительный интервал для множественного коэффициента корреляции $r_z$.
+\begin{gather*}
+    Z=\frac{1}{2}\ln\left(
+        \frac{1+r_z}{1-r_z}
+    \right) \approx N\left(
+        \frac{1}{2}\ln\left(
+            \frac{1+\rho_z}{1-\rho_z}
+        \right);\frac{1}{\sqrt{n}}
+    \right)
+\end{gather*}
+Значит доверительный интервал для множественного коэффициента корреляции находится с помощью следующего неравенства:
+\begin{gather*}
+    \frac{1}{2} \ln \left(
+        \frac{1+r_{z}}{1-r_{z}}
+    \right)
+    -
+    \frac{1,96}{\sqrt{n-4}}
+    <
+    \frac{1}{2} \ln \left(
+        \frac{1+\rho_{z}}{1-\rho_{z}}
+    \right)
+    <
+    \frac{1}{2} \ln \left(
+        \frac{1+r_{z}}{1-r_{z}}
+    \right)
+    +
+    \frac{1,96}{\sqrt{n-4}}
+\end{gather*}
+После подстановки значений получим следующее неравенство:
+\begin{gather*}
+    -0,003
+    <
+    \frac{1}{2} \ln \left(
+        \frac{1+\rho_{z}}{1-\rho_{z}}
+    \right)
+    <
+    0.7661
+\end{gather*}
+Решив неравенство получим:
+\begin{gather*}
+    \begin{cases}
+        \rho_z > -0,003\\
+        \rho_z < 0,645
+    \end{cases}
+\end{gather*}
+Таким образом, доверительный интервал для множественного коэффициента корреляции $r_z: -0,003 < \rho_z < 0,645$.
+ 
+\mysec{Корреляционная матрица. Множественный коэффициент корреляции.}
+Построим корреляционную матрицу:
+\begin{gather*}
+    R = \begin{pmatrix}
+        1 & \rhob(x,z) & \rhob(y,z) \\
+        \rhob(x,z) & 1 & \rhob(x,y) \\
+        \rhob(y,z) & \rhob(x,y) & 1
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        1 & 0,1720 & -0,1781 \\
+        0,1720 & 1 & 0,2881 \\
+        -0,1781 & 0,2881 & 1
+    \end{pmatrix}
+\end{gather*}
+Найдем множественный коэффициент корреляции:
+\begin{align*}
+    R^2_{z:xy} = 1 - \frac{|R|}{R_{11}} = 0,0861; \\
+    r_z = \sqrt{R^2_{z:xy}} = 0,3642
+\end{align*}
+
+\mysec{Коэффициенты детерминации. Частные коэффициенты детерминации. Оценки коэффициентов линейной регрессии.}
+
 \end{document}
