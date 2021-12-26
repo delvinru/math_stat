@@ -362,4 +362,115 @@
     z = \frac{1}{0,5315} = 1,88 > 1 \Rightarrow\  \text{процесс } \xi_1, \ldots, \xi_{30} \  \text{стационарен.}
 \end{gather*}
 
+\mysec{Построение авторегрессионного процесса 2-го порядка. Коэффициент детерминации}
+
+Авторегрессионный процесс 2-го порядка:
+\begin{gather*}
+    Y_i = a_0 + a_1 Y_{i-1} + a_2 Y_{i-2} + \varepsilon_i, i \in \overline{3, 30}.
+\end{gather*}
+Оценим при помощи метода наименьших квадратов:
+\begin{gather*}
+    \varPhi(a_2, a_1, a_0) = \sum\limits_{i=3}^n (Y_i - a_0 - a_1Y_{i-1} - a_2Y_{i-2})^2 \\ 
+    \begin{dcases}
+        \der{\varPhi}{a_2} = -2 \sum\limits_{i=3}^n (Y_i - a_2Y_{i-2} - a_1Y_{i-1} - a_0)Y_{i-3} = 0, \\
+        \der{\varPhi}{a_1} = -2 \sum\limits_{i=3}^n (Y_i - a_2Y_{i-2} - a_1Y_{i-1} - a_0)Y_{i-2} = 0, \\
+        \der{\varPhi}{a_0} = -2 \sum\limits_{i=3}^n (Y_i - a_2Y_{i-2} - a_1Y_{i-1} - a_0) = 0
+    \end{dcases}
+    \Rightarrow \\
+    \begin{dcases}
+        -\sum\limits_{i=3}^nY_iY_{i-2} + a_2 \sum\limits_{i=3}^nY^2_{i-2} + a_1\sum\limits_{i=3}^nY_{i-1}Y_{i-2} + a_0\sum\limits_{i=3}^nY_{i-2} = 0, \\
+        -\sum\limits_{i=3}^nY_iY_{i-1} + a_2 \sum\limits_{i=3}^nY_{i-2}Y_{i-1} + a_1 \sum\limits_{i=3}^nY^2_{i-1} + a_0\sum\limits_{i=3}^nY_{i-1} = 0, \\
+        -\sum\limits_{i=3}^nY_i + a_2 \sum\limits_{i=3}^nY_{i-2} + a_1 \sum\limits_{i=3}^nY_{i-1} + (n-2) \cdot  a_0 = 0
+    \end{dcases}
+    \Rightarrow \\
+    \begin{dcases}
+        a_2\sum\limits_{i=3}^n Y_{i-2}^2 + a_1 \sum\limits_{i=3}^n Y_{i-1}Y_{i-2} + a_0\sum\limits_{i=3}^n Y_{i-2} = \sum\limits_{i=3}^n Y_iY_{i-2}, \\
+        a_2\sum\limits_{i=3}^nY_{i-2}Y_{i-1} + a_1 \sum\limits_{i=3}^nY^2_{i-1} + a_0\sum\limits_{i=3}^nY_{i-1} = \sum\limits_{i=3}^nY_iY_{i-1}, \\
+        a_2\sum\limits_{i=3}^nY_{i-2} + a_1\sum\limits_{i=3}^nY_{i-1} + (n-2)\cdot a_0 = \sum\limits_{i=3}^nY_i
+    \end{dcases}
+    \Rightarrow \\
+    \begin{dcases}
+        540183495,3 a_2 + 541709215,4 a_1 + 122833,07 a_0 = 543259744,9, \\
+        541709215,4 a_2 + 563320268,8 a_1 + 127643,14 a_0 = 563930055,3, \\
+        122833,07 a_2 + 127643,14 a_1 + 28 a_0 = 122833,07
+    \end{dcases}
+    \Rightarrow \\
+    \begin{dcases}
+        a_2 = 0,0259, \\
+        a_1 = -0,2394, \\
+        a_0 = 5364,93
+    \end{dcases}
+\end{gather*}
+
+Следовательно, получим следующее уравнение авторегрессионного процесса 2-го порядка:
+\begin{gather*}
+    Y_i = 5364,9308-0,2395\cdot Y_i-1 0,0259\cdot Y_{i-2}
+\end{gather*}
+
+Найдем ошибки модели по следующей формуле:
+\begin{gather*}
+    \varepsilon_i = Y_i - a_0 - a_1Y_{i-1} - a_2Y_{i-2} = Y_i - 5364,9308 + 0,2395\cdot Y_{i-1} + 0,0259\cdot Y_{i-2}
+\end{gather*}
+
+Вычисленные значения:
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        $i$ & $\varepsilon_i$ & $i$ & $\varepsilon_i$ \\ \hline
+           &           & 16 & -36,9637  \\ \hline
+           &           & 17 & -231,4777 \\ \hline
+        3  & 283,9814  & 18 & -346,5806 \\ \hline
+        4  & 458,5674  & 19 & -119,1522 \\ \hline
+        5  & 356,1120  & 20 & -115,3366 \\ \hline
+        6  & 280,9708  & 21 & 19,2158   \\ \hline
+        7  & 356,5089  & 22 & -451,0060 \\ \hline
+        8  & 295,1448  & 23 & -349,4947 \\ \hline
+        9  & 273,3624  & 24 & -122,6339 \\ \hline
+        10 & 247,4975  & 25 & 71,2755   \\ \hline
+        11 & 103,5921  & 26 & 240,1050  \\ \hline
+        12 & -227,7236 & 27 & 192,9407  \\ \hline
+        13 & -231,6053 & 28 & 55,1421   \\ \hline
+        14 & -454,1587 & 29 & -259,4049 \\ \hline
+        15 & -120,5052 & 30 & -352,9323 \\ \hline
+    \end{tabular} 
+\end{table}
+
+Средняя ошибка:
+\begin{gather*}
+    \frac{1}{n-2}\sum_{i=3}^n\varepsilon_i^2 = \frac{1}{28} \sum_{i=3}^{30} = 72223,92058 
+\end{gather*}
+
+Коэффициент детерминации:
+\begin{gather*}
+    R^2_{\varepsilon} = 1 - \frac{\dfrac{1}{n-2} \sum\limits_{i=3}^n \varepsilon_i^2}{\Db(X)} = 1 - \frac{72223,9206}{53330,3766} = -0,3543
+\end{gather*}
+
+\newpage
+Определим с помощью уравнения $Y_i = -0,0259\cdot Y_{i-2} - 0,2395 \cdot Y_{i-1} + 5364,9308$ теоретические значения $Y_I, i \in \overline{31,38}$.
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        $k$ & $Y_i$ теоретическое & $Y_i$ реальное \\  \hline
+        1  & 4209,78 & 4210,21 \\ \hline
+        2  & 4243,62 & 4240,67 \\ \hline
+        3  & 4239,57 & 4220,39 \\ \hline
+        4  & 4239,73 & 4250,97 \\ \hline
+        5  & 4239,70 & 4240,48 \\ \hline
+        6  & 4239,71 & 4270,15 \\ \hline
+        7  & 4239,71 & 4269,12 \\ \hline
+        8  & 4239,71 & 4260,78 \\ \hline
+    \end{tabular}
+\end{table}
+При увеличение $k$ теоретическое значение будет все сильнее отличаться от реальных данных.
+
+\mysec{Заключение}
+Временной ряд содержит тенденцию.
+
+Т.к. значения коэффициентов детерминации $R_1^2$ и $R_2^2$ находятся на достаточном расстоянии по модулю от 1, то линейное уравнение регрессии
+не может достаточно точно описать данный временной ряд. Т.е. цена криптовалюты не зависит от дня.
+
+Средние ошибки обоих моделей достаточно велики, что говорит о более сложном устройстве данной выборки.
+
 \end{document}
