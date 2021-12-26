@@ -54,5 +54,122 @@
         30 & 12.07 & 4369,08 \\ \hline
     \end{tabular}
 \end{table}
+\newpage
+
+\mysec{График динамики ряда}
+Временной ряд - это собранный в разные моменты времени статистический материал о значении каких-либо параметров.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics{img/dynamic_range.png}
+    \caption{Динамика ряда.}
+\end{figure}
+
+\mysec{Автокорреляционная функция}
+Автокорреляция - это обычный коэффициент корреляции для значений одной величины в разные моменты времени (лаги).
+Серию коэффициентов автокорреляции уровней ряда с последовательным увеличением величины лага принято называть автокорреляционной функцией.
+Автокорреляция в момент вермени $k$ вычисляется по следующей формуле:
+\begin{gather*}
+    r(k) = \frac{\cov(X, Y)}{\sqrt{\Db(X)}\sqrt{\Db(Y)}}
+    = \frac{
+        \overline{x_k \cdot x_{k-1}} - \overline{x_k} \cdot \overline{x_{k-1}}
+    }{
+        \sigma_k \cdot \sigma_{k-1}
+    }
+\end{gather*}
+
+Если $X = \{ x_1, \ldots, x_{30} \}$, то $X_k = \{ x_1, \ldots, x_{n-k} \}, X_{k-1} = \{ x_{1+k}, \ldots, x_n \}, k \in \overline{1, \tfrac{n}{2}}, m = n - k$.
+
+Найдём $r(1)$. Для этого необходимо вычислить вспомогательные значения:
+\begin{gather*}
+    X_1 = \{x_1, \ldots, x_{29}\} \qquad X_2 = \{x_2, \ldots, x_{30}\} \\
+    \overline{x_k} = \frac{1}{29} \sum_{i=1}^{29} x_i = \frac{4619,65 + \ldots + 4199,00}{29} = 4410,13 \\ 
+    \overline{x_{k-1}} = \sum_{i=2}^{30} x_i = \frac{4810,07 + \ldots + 4369,08}{29} = 4401,49 \\
+    D_k = \frac{1}{29} \sum_{i=1}^{29} x_i^2 - (\overline{x_k})^2 = \frac{4619,65^2 + \ldots + 4199,00^2}{29} - 4410,13^2 = 53255,96 \\
+    D_{k-1} = \frac{1}{29} \sum_{i=2}^{30} x_i^2 - (\overline{x_{k-1}})^2 = \frac{4810,07^2 + \ldots + 4369,08^2}{29} - 4401,49^2 = 51722,63 \\
+    \sigma_k = \sqrt{D_k} = 230,77 \\
+    \sigma_{k-1} = \sqrt{D_{k-1}} = 227,43 \\
+    \overline{x_k \cdot x_{k-1}} = \frac{4619,65 \cdot 4810,07 + \ldots + 4199,00 \cdot 4369,08}{49} = 19445863,97 \\
+    r(1) = \frac{19445863,97 - 4410,13 \cdot 4401,49}{230,77 \cdot 227,43} = 0,6617
+\end{gather*}
+Аналогично найдем $r(2), \ldots, r(15)$. Приведём итоговый результат в виде таблицы, опустив промежуточные вычисления:
+\begin{table}[h!]
+    \centering    
+    \begin{tabular}{|c|c|}
+        \hline
+        $k$ & $r(k)$ \\ \hline
+        1 & 0,6617 \\ \hline
+        2 & 0,4424 \\ \hline
+        3 & 0,1949 \\ \hline
+        4 & 0,1888 \\ \hline
+        5 & 0,1939 \\ \hline
+        6 & 0,1814 \\ \hline
+        7 & -0,0254 \\ \hline
+        8 & -0,0599 \\ \hline
+        9 & -0,2435 \\ \hline
+        10 & -0,2142 \\ \hline
+        11 & -0,1569 \\ \hline
+        12 & -0,2445 \\ \hline
+        13 & -0,4004 \\ \hline
+        14 & -0,4425 \\ \hline
+        15 & -0,1600 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics{img/correlogramma.png}
+    \caption{Коррелограмма}
+\end{figure}
+Поскольку коррелограмма АКФ имеет максимум при $k=1 (r(1) = 0,6617)$, то ряд содержит только тенденцию (тренд).
+Тренд - это долговременная тенденция изменения исследуемого временного ряда.
+
+\newpage
+
+\mysec{Уравнение тренда}
+На основе коррелограммы опишем тренд линейной функцией:
+\begin{gather*}
+    x(t) = kt + b
+\end{gather*}
+Для вычисления коэффициентов $k$ и $b$ воспользуемся функцией $\varPhi(k, b) = \sum\limits_{i=1}^n (x_i - kt_i -b)^2$. Для нахождения коэффициентов $k$ и $b$ решим следующую систему уравнений:
+\begin{gather*}
+    \begin{dcases}
+        \der{\varPhi}{k} = 0, \\
+        \der{\varPhi}{b} = 0
+    \end{dcases}
+    \Rightarrow
+    \begin{dcases}
+        \der{\varPhi}{k} = -2 \sum\limits_{i=1}^n (x_it_i - t_i^2k - t_ib) = 0, \\
+        \der{\varPhi}{b} = -2 \sum\limits_{i=1}^n (x_i - kt_i - b) = 0
+    \end{dcases}
+    \Rightarrow \\
+    \begin{dcases}
+        k \sum\limits_{i=1}^n t_i^2 + b \sum\limits_{i=1}^n t_i = \sum\limits_{i=1}^n x_it_i, \\
+        k \sum\limits_{i=1}^n t_i + nb = \sum\limits_{i=1}^n x_i
+    \end{dcases}
+    \Rightarrow \\
+    \begin{dcases}
+        9455k + 465b = 2019386,97, \\
+        465k + 30 b = 132262,79 \\
+    \end{dcases}
+    \Rightarrow \\
+    \begin{dcases}
+        k\left(9455 - \frac{465^2}{30}\right) = 2019386,97 - \frac{465 \cdot 132262,79}{30}, \\
+        b = \frac{132262,79 - 465k}{30}
+    \end{dcases}
+    \Rightarrow
+    \begin{dcases}
+        k = -13,65, \\
+        b = 4620,39
+    \end{dcases}
+\end{gather*}
+Следовательно, уравнение тренда будет выглядеть следующим образом:
+\begin{gather*}
+    x(t) = -13,65t + 4620,39
+\end{gather*}
+\newpage
+
+\mysec{Ошибки тренда}
+
 
 \end{document}
