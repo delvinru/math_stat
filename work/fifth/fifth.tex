@@ -170,6 +170,196 @@
 \newpage
 
 \mysec{Ошибки тренда}
+Определим ошибки тренда $\xi_i$ по следующей формуле:
+\begin{gather*}
+    x_i = -13,65 t_i + 4620,39 + \xi_i \Rightarrow \xi_i = x_i + 13,65 t_i - 4620,39 \\
+    \xi_1 = 4619,65 + 13,65 \cdot 1 - 4620,39 = 12,9144 \\
+    \ldots \\
+    \xi_{30} = 4369,08 + 13,65 \cdot 30 - 4620,39 = 158,2963
+\end{gather*}
 
+Получим следующую таблицу ошибок:
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        $i$ & $\xi_i$ & $i$ & $\xi_i$ \\ \hline
+        1 & 12,9144    & 16 & -312,2529 \\ \hline
+        2 & 216,9879   & 17 &  -48,2394 \\ \hline
+        3 & 153,9314   & 18 & -103,2359 \\ \hline
+        4 & 69,6749    & 19 &  161,2376 \\ \hline
+        5 & 172,1884   & 20 & -304,3188 \\ \hline
+        6 & 128,2519   & 21 & -232,0153 \\ \hline
+        7 & 123,8155   & 22 &  -23,0618 \\ \hline
+        8 & 115,9290   & 23 &  141,4117 \\ \hline
+        9 & 72,9725    & 24 &  330,9752 \\ \hline
+        10 & -269,9440 & 25 &  307,2787 \\ \hline
+        11 & -182,4005 & 26 &  248,9622 \\ \hline
+        12 & -460,8170 & 27 &  -23,9842 \\ \hline
+        13 & -144,5435 & 28 & -118,4607 \\ \hline
+        14 & -17,0399  & 29 &  -25,4372 \\ \hline
+        15 & -149,0764 & 30 &  158,2963 \\ \hline
+    \end{tabular} 
+\end{table}
+
+\newpage
+По этой таблице построим следующую диаграмму ошибок:
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics{img/errors.png}
+    \caption{Диаграмма ошибок.}
+\end{figure}
+
+Определим коэффициент детерминации для ошибок $\xi$:
+\begin{gather*}
+    R^2 = 1 - \frac{\dfrac{1}{n}\sum\limits_{i=1}^n \xi_i^2}{\Db(X)} \\
+    \overline{\xb} = \frac{1}{n} \sum\limits_{i=1}^n x_i = \frac{4619,65 + \ldots + 4369,08}{30} = 4408,76 \\
+    \Db(X) = \frac{1}{30} \sum\limits_{i=1}^n x_i^2 - (\overline{\xb})^2 = 53330,38
+\end{gather*}
+
+Средняя ошибка:
+\begin{gather*}
+    \frac{1}{n} \sum_{i=1}^n \xi_i^2 = 37586,85
+\end{gather*}
+
+Коэффициент детерминации для ошибок $\xi$:
+\begin{gather*}
+    R^2 = 1 - \frac{37586,85}{53330,38} = 0,2952
+\end{gather*}
+
+\newpage
+
+\mysec{Коэффициент автокорреляции ошибок с лагом 1}
+
+Коэффициент корреляции $r_{k, k-1}(1)$ находится по следующей формуле
+\begin{gather*}
+    r_\xi(k) = \frac{
+        \overline{\xi_k \cdot \xi_{k-1}} - \overline{\xi_k} \cdot \overline{\xi_{k-1}}
+    }{
+        \sigma_k \cdot \sigma_{k-1}
+    }
+\end{gather*}
+и будет находиться между группами  $\xi_k$ и $\xi_{k-1}$:
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        $\xi_k$ & $\xi_{k-1}$ \\ \hline
+        12,9144   & 216,9879  \\ \hline
+        216,9879  & 153,9314  \\ \hline
+        153,9314  & 69,6749   \\ \hline
+        69,6749   & 172,1884  \\ \hline
+        172,1884  & 128,2519  \\ \hline
+        128,2519  & 123,8155  \\ \hline
+        123,8155  & 115,9290  \\ \hline
+        115,9290  & 72,9725   \\ \hline
+        72,9725   & -269,9440 \\ \hline
+        -269,9440 & -182,4005 \\ \hline
+        -182,4005 & -460,8170 \\ \hline
+        -460,8170 & -144,5435 \\ \hline
+        -144,5435 & -17,0399  \\ \hline
+        -17,0399  & -149,0764 \\ \hline
+        -149,0764 & -312,2529 \\ \hline
+        -312,2529 & -48,2394  \\ \hline
+        -48,2394  & -103,2359 \\ \hline
+        -103,2359 & 161,2376  \\ \hline
+        161,2376  & -304,3188 \\ \hline
+        -304,3188 & -232,0153 \\ \hline
+        -232,0153 & -23,0618  \\ \hline
+        -23,0618  & 141,4117  \\ \hline
+        141,4117  & 330,9752  \\ \hline
+        330,9752  & 307,2787  \\ \hline
+        307,2787  & 248,9622  \\ \hline
+        248,9622  & -23,9842  \\ \hline
+        -23,9842  & -118,4607 \\ \hline
+        -118,4607 & -25,4372  \\ \hline
+        -25,4372  & 158,2963  \\ \hline
+    \end{tabular}
+\end{table}
+
+Получим, что $r_{k, k-1}(1) = 0,5377$.
+
+\mysec{Оценка коэффициентов уравнений остатка}
+
+РАссмотрим $\xi_i = a_1 \xi_{i-1} + a_0 + \varepsilon_i, i \in \overline{2, 30}$. Найдем коэффициенты $a_1$ и $a_0$ уравнения:
+\begin{gather*}
+    \xi_i = a_1 \xi_{i-1} + a_0
+\end{gather*}
+
+Оценим при помощи метода наименьших квадратов $\varPhi(a_1, a_0) = \sum\limits_{i=1}^n (\xi_i - a_1\xi_{i-1} - a_0)^2$.
+\begin{gather*}
+    \begin{dcases}
+        \der{\varPhi}{a_1} = -2 \sum\limits_{i=2}^n(\xi_i \xi_{i-1} - \xi_{i-1}^2 a_1 - \xi_{i-1}a_0) = 0, \\
+        \der{\varphi}{a_0} = -2 \sum\limits_{i=2}^n (\xi_i - a_1\xi_{i-1} - a_0) = 0
+    \end{dcases}
+    \Rightarrow \\
+    \begin{dcases}
+        a_1 \sum\limits_{i=2}^n\xi_{i-1}^2 + a_0\sum\limits_{i=2}^n\xi_{i-1} = \sum\limits_{i=2}^n \xi_i \xi_{i-1}, \\
+        a_1 \sum\limits_{i=2}^n \xi_{i-1} + (n-1)a_0 = \sum\limits_{i=2}^n\xi_i
+    \end{dcases}
+    \Rightarrow \\
+    \begin{dcases}
+        1127438,6227 a_1 -12,9144 a_0 = 599344,7436, \\
+        -12,9144a_1 + 29a_0 = -158,2963
+    \end{dcases}
+    \Rightarrow
+    \begin{dcases}
+        a_1 = 0,5315, \\
+        a_0 = -5,2218
+    \end{dcases}
+    \Rightarrow \\
+    \xi_i = 0,5315 \xi_{i-1} -5,2218
+\end{gather*}
+
+Вычислим ошибки $\varepsilon_i$:
+\begin{gather*}
+    \varepsilon_i = \xi_i - 0,5315\xi_{i-1} + 5,2218 \\
+    \varepsilon_2 = \xi_2 - 0,5315\xi_{1} + 5,2218 = -97,2013
+\end{gather*}
+
+\newpage
+По аналогии посчитаем остальные ошибки:
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        $i$ & $\varepsilon_i$ & $i$ & $\varepsilon_i$ \\ \hline
+           &           & 16 & 22,1199   \\ \hline
+        2  & -97,2013  & 17 & -281,3900 \\ \hline
+        3  & 140,3892  & 18 & 11,8563   \\ \hline
+        4  & 122,1183  & 19 & -183,7181 \\ \hline
+        5  & -16,6281  & 20 & 328,2167  \\ \hline
+        6  & 109,2393  & 21 & -175,7719 \\ \hline
+        7  & 67,6610   & 22 & -214,5353 \\ \hline
+        8  & 67,4165   & 23 & -93,0058  \\ \hline
+        9  & 82,3631   & 24 & -29,2927  \\ \hline
+        10 & 221,6800  & 25 & 172,8665  \\ \hline
+        11 & -167,7693 & 26 & 180,1674  \\ \hline
+        12 & 67,7634   & 27 & 266,9326  \\ \hline
+        13 & -378,7647 & 28 & 44,2040   \\ \hline
+        14 & -130,2643 & 29 & -99,7181  \\ \hline
+        15 & 67,4217   & 30 & -104,3560 \\ \hline
+    \end{tabular}
+\end{table}
+
+Вычислим коэффициент детерминации для ошибок $\varepsilon$:
+\begin{gather*}
+    R^2 = 1 - \frac{
+        \dfrac{1}{n-1} \sum\limits_{i=1}^{n-1} \varepsilon_i^2 + \xi_1^2
+    }{
+        \Db(X)
+    } \\ 
+    R^2 = 1 - \frac{
+        \dfrac{1}{30 - 1} (-97,2013^2 + \ldots + -104,3560^2 + 12,9144^2)
+    }{
+        53330,3766
+    } = 0,4935.
+\end{gather*}
+
+Для процесса $\xi_i = a_1 \xi_{i-1} + a_0 + \varepsilon_i$ условие стационарности означает, что $|a_1| < 1$, поскольку из $1 - a_1z = 0 \Rightarrow |z| = \tfrac{1}{a_1} > 1$. Тогда
+\begin{gather*}
+    z = \frac{1}{0,5315} = 1,88 > 1 \Rightarrow\  \text{процесс } \xi_1, \ldots, \xi_{30} \  \text{стационарен.}
+\end{gather*}
 
 \end{document}
