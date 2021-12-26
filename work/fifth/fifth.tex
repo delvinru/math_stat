@@ -1,0 +1,58 @@
+\documentclass[utf8, a4paper, 14pt, russian, oneside]{book}
+
+\input{../include/lib}
+\input{../include/commands}
+
+% Команды для настройки содержания
+\renewcommand\contentsname{\center{Содержание}} % Вместо оглавления пишется содержание
+\addto{\captionsenglish}{\renewcommand{\bibname}{References}}
+\begin{document}
+
+\input{../include/title.tex}
+
+\tableofcontents
+\newpage
+
+\mysec{Описание данных}
+
+В качестве данных возьмем данные о цене на курс криптовалюты <<Ethereum>> (в долларах) в период времени с 8 ноября по 7 декабря. Объём выборки равен 30.
+Пусть X - цена криптовалюты.
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        № & Дата & Цена \\ \hline
+        1 & 11.08 & 4619,65 \\ \hline
+        2 & 11.09 & 4810,07 \\ \hline
+        3 & 11.10 & 4733,36 \\ \hline
+        4 & 11.11 & 4635,45 \\ \hline
+        5 & 11.12 & 4724,31 \\ \hline
+        6 & 11.13 & 4666,72 \\ \hline
+        7 & 11.14 & 4648,63 \\ \hline
+        8 & 11.15 & 4627,09 \\ \hline
+        9 & 11.16 & 4570,48 \\ \hline
+        10 & 11.17 & 4213,91 \\ \hline
+        11 & 11.18 & 4287,80 \\ \hline
+        12 & 11.19 & 3995,73 \\ \hline
+        13 & 11.20 & 4298,35 \\ \hline
+        14 & 11.21 & 4412,20 \\ \hline
+        15 & 11.22 & 4266,51 \\ \hline
+        16 & 11.23 & 4089,68 \\ \hline
+        17 & 11.24 & 4340,04 \\ \hline
+        18 & 11.25 & 4271,39 \\ \hline
+        19 & 11.26 & 4522,21 \\ \hline
+        20 & 11.27 & 4043,00 \\ \hline
+        21 & 11.28 & 4101,65 \\ \hline
+        22 & 11.29 & 4296,95 \\ \hline
+        23 & 11.30 & 4447,77 \\ \hline
+        24 & 12.01 & 4623.68 \\ \hline
+        25 & 12.02 & 4586,33 \\ \hline
+        26 & 12.03 & 4514,36 \\ \hline
+        27 & 12.04 & 4227,76 \\ \hline
+        28 & 12.05 & 4119,63 \\ \hline
+        29 & 12.06 & 4199,00 \\ \hline
+        30 & 12.07 & 4369,08 \\ \hline
+    \end{tabular}
+\end{table}
+
+\end{document}
